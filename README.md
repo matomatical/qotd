@@ -1,5 +1,5 @@
 # QOTD
 
-Personal QOTD[1] server
+Personal QOTD (Quote Of The Day) server
 
-[1]: RFC865 https://tools.ietf.org/html/rfc865
+See [RFC865](https://tools.ietf.org/html/rfc865).
