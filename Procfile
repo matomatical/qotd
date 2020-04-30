@@ -1,0 +1,1 @@
+qotd: python qotd.py
