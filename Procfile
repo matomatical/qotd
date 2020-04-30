@@ -1,1 +1,1 @@
-qotd: python qotd.py
+qotd: python3 qotd.py
