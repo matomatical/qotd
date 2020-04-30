@@ -5,19 +5,19 @@ import socket
 import time
 
 
-HOST = ""
+HOST = "" # allow all incoming connections
 PORT = 17
-FILE = "quotes.txt"
+FILENAME = "quotes.txt"
 
 def main():
     # load quote list
-    print("loading quotes from", FILE)
-    q = QuoteList(FILE)
+    print("loading quotes from", FILENAME)
+    q = QuoteList(FILENAME)
 
     # set up server socket
-    print("setting up server socket, port", PORT)
     ssock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     ssock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    print("attempting to bind to port", PORT)
     ssock.bind((HOST, PORT))
     ssock.listen()
     print("listening... (^C to stop)")
