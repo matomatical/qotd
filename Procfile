@@ -1,1 +1,1 @@
-qotd: python3 qotd.py
+web: python3 qotd.py
