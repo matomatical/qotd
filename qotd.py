@@ -6,8 +6,7 @@ import time
 
 
 HOST = "" # allow all incoming connections
-PORT_SUPER  = 17
-PORT_BACKUP = 1717
+PORT = int(os.getenv('PORT', 17)) # heroku expects to use $PORT
 FILENAME = "quotes.txt"
 
 def main():
@@ -18,12 +17,8 @@ def main():
     # set up server socket
     ssock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     ssock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    try:
-        print("attempting to bind to super port", PORT_SUPER)
-        ssock.bind((HOST, PORT_SUPER))
-    except PermissionError:
-        print("re-trying to bing to normal port", PORT_BACKUP)
-        ssock.bind((HOST, PORT_BACKUP))
+    print("attempting to bind to port", PORT)
+    ssock.bind((HOST, PORT))
     ssock.listen()
     print("listening... (^C to stop)")
     # process incoming connections
