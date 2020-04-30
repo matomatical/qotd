@@ -1,0 +1,2 @@
+# qotd
+Personal QOTD server
