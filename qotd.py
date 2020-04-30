@@ -5,20 +5,25 @@ import socket
 import time
 
 
-HOST = ""
-PORT = 17
-FILE = "quotes.txt"
+HOST = "" # allow all incoming connections
+PORT_SUPER  = 17
+PORT_BACKUP = 1717
+FILENAME = "quotes.txt"
 
 def main():
     # load quote list
-    print("loading quotes from", FILE)
-    q = QuoteList(FILE)
+    print("loading quotes from", FILENAME)
+    q = QuoteList(FILENAME)
 
     # set up server socket
-    print("setting up server socket, port", PORT)
     ssock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     ssock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    ssock.bind((HOST, PORT))
+    try:
+        print("attempting to bind to super port", PORT_SUPER)
+        ssock.bind((HOST, PORT_SUPER))
+    except PermissionError:
+        print("re-trying to bing to normal port", PORT_BACKUP)
+        ssock.bind((HOST, PORT_BACKUP))
     ssock.listen()
     print("listening... (^C to stop)")
     # process incoming connections
